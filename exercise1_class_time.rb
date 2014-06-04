@@ -1,8 +1,8 @@
 class Person
 	attr_accessor :name
 
-	def initialize(attributes = {})
-		@name = attributes[:name]
+	def initialize(name)
+		@name = name
 	end
 
 	def greet
@@ -23,8 +23,8 @@ class Instructor < Person
 	end
 end
 
-chris = Instructor.new(name: "Chris")
-christina = Student.new(name: "Christina")
+chris = Instructor.new("Chris")
+christina = Student.new("Christina")
 
 chris.teach
 christina.learn
