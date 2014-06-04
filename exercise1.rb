@@ -28,5 +28,5 @@ christina = Student.new(name: "Christina")
 
 chris.teach
 christina.learn
-christina.teach # won't work because the student class doesn't have the teach method"
+# christina.teach # won't work because the student class doesn't have the teach method"
 
