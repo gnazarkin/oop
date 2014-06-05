@@ -4,7 +4,6 @@ class Plateau
 		@x = x
 		@y = y
 	end
-
 end
 
 class Rover
@@ -28,7 +27,6 @@ class Rover
 			 	@y-=1
 			elsif (@direction == "W" && command == "M")
 				@x-=1	
-
 			elsif (command == "L" && @direction == "N")
 			 	@direction = "W"
 			elsif (command == "L" && @direction == "E")
@@ -37,7 +35,6 @@ class Rover
 			  @direction = "E"
 			elsif (command == "L" && @direction == "W")
 			 @direction = "S"
-			
 			elsif (command == "R" && @direction == "N")
 			 @direction = "E"
 			elsif (command == "R" && @direction == "E")
@@ -46,11 +43,19 @@ class Rover
 			 @direction = "W"
 			elsif (command == "R" && @direction == "W")
 			 @direction = "N"
-			end
+			end 
 		end
 
 	end
 end
+
+# Playing around with inputs, but would require to change the entire code
+# puts "Please input rover 1 coordinates and location"
+# rover1_init = gets.chomp
+# puts "Please input rover 1 movement"
+# rover1_moverment = gets.chomp
+# rover1 = Rover.new (rover1_init)
+# rover1.explore(rover1_moverment)
 
 rover1 = Rover.new(1,2,"N")
 rover1.explore("LMLMLMLMM")
