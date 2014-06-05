@@ -18,18 +18,18 @@ class Receipt
 
 		@items.each do |item|
 			if item.is_imported == "imported" && item.is_exempt == "exempt"
-				@total_sales_tax += item.price*0.05
+				@total_sales_tax += item.price*IMPORT_TAX
 			elsif item.is_imported == "imported" && item.is_exempt == "not exempt"
-				@total_sales_tax += item.price*0.15
+				@total_sales_tax += item.price*(IMPORT_TAX+SALES_TAX)
 			elsif item.is_imported == "not imported" && item.is_exempt == "not exempt"
-				@total_sales_tax += item.price*0.1
+				@total_sales_tax += item.price*SALES_TAX
 			end 
 		end
 
 		if @total_sales_tax % 0.05 != 0	
-			@total_sales_tax += (@total_sales_tax % 0.05)
-		 end
-		return @total_sales_tax.round(2)
+			@total_sales_tax += @total_sales_tax % 0.05
+		end
+		return @total_sales_tax
 	end
 
 	def total
@@ -69,6 +69,10 @@ class Item
 	def to_s
 		"#{quantity} #{name}: $#{price}"
 	end
+
+	def sales_tax
+		0.10
+	end
 end 
 
 
@@ -77,8 +81,14 @@ item2 = Item.new(1, "not imported", "music CD", 14.99, "not exempt")
 item3 = Item.new(1, "not imported", "chocolate bar", 0.85, "exempt")
 
 
-receipt = Receipt.new([item1, item2, item3])
-receipt.output
+receipt1 = Receipt.new([item1, item2, item3])
+receipt1.output
 
+item6 = Item.new(1, "imported", "bottle of perfume", 27.99, "not exempt")
+item7 = Item.new(1, "not imported", "bottle of perfume", 18.99, "not exempt")
+item8 = Item.new(1, "not imported", "packet of headache pills", 9.75, "exempt")
+item9 = Item.new(1, "imported", "box of chocolates", 11.25, "exempt")
 
+receipt3 = Receipt.new([item6, item7, item8, item9])
+receipt3.output
 
